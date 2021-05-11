@@ -4,6 +4,7 @@
     <label for="username">Nom d'utilisateur</label>
     <br>
     <input
+      id="username"
       type='text'
       name='username'
       v-model='username'
@@ -13,6 +14,7 @@
     <label for="password">Mot de passe</label>
     <br>
     <input
+      id="password"
       type='password'
       name='password'
       v-model='password'
@@ -57,7 +59,9 @@ export default {
       // console.log(this.token)
       this.authenticated = true
       // console.log(this.authenticated)
-      this.$router.replace({ name: 'editor' })
+      sessionStorage.setItem('code-fit-token', response.data.token)
+      sessionStorage.setItem('code-fit-user-id', response.data.id)
+      await this.$router.replace({ name: 'editor' })
     },
     signup () {
       this.$router.replace({ name: 'signup' })
