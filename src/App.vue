@@ -1,12 +1,19 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id='app'>
+      <div id='nav'>
+          <router-link v-if='authenticated' to='/login' v-on:click='logout()' replace>Logout</router-link>
+      </div>
+      <router-view @authenticated='setAuthenticated' />
   </div>
-  <router-view/>
 </template>
 
-<style lang="scss">
+<script>
+export default {
+  name: 'App'
+}
+</script>
+
+<style lang='scss'>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
