@@ -1,4 +1,5 @@
 <template>
+  <Nav />
   <div id='signup'>
     <h1>Inscription</h1>
 
@@ -31,14 +32,18 @@
     <br><br>
     <button type='button' @click='signup()'>S'inscrire</button>
     <br>
-    <button type='button' @click='login()'>Se connecter</button>
+    <router-link to='/login'>Se connecter</router-link>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Nav from '@/components/Nav'
 export default {
   name: 'Signup',
+  components: {
+    Nav
+  },
   data () {
     return {
       username: '',
@@ -54,9 +59,6 @@ export default {
       const user = { username: this.username, email: this.email, password: this.password }
       console.log(user)
       axios.post('http://localhost:8080/api/auth/signup', user)
-      this.$router.replace({ name: 'login' })
-    },
-    login () {
       this.$router.replace({ name: 'login' })
     }
   }
