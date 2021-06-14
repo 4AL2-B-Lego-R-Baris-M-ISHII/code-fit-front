@@ -5,6 +5,7 @@
         <router-link v-if="authenticated" class="navbar-brand" to="/editor">Editeur</router-link>
         <a class="navbar-brand" v-if="authenticated" @click="logout()">Se déconnecter</a>
         <router-link class="navbar-brand" v-if="!authenticated" to="/login">Se connecter</router-link>
+        <router-link class="navbar-brand" v-if="isAdmin" to="/admin">Administration</router-link>
       </nav>
     </div>
 </template>
@@ -14,7 +15,8 @@ export default {
   name: 'Nav',
   data () {
     return {
-      authenticated: ''
+      authenticated: '',
+      isAdmin: ''
     }
   },
   methods: {
@@ -27,6 +29,10 @@ export default {
     const auth = sessionStorage.getItem('code-fit-token')
     if (auth !== null) {
       this.authenticated = auth
+    }
+    const role = sessionStorage.getItem('code-fit-role')
+    if (role !== null && role === 'ROLE_USER') {
+      this.isAdmin = role
     }
   }
 }

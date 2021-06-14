@@ -48,6 +48,8 @@ export default {
       const response = await axios.post('http://localhost:8080/api/auth/signin', user)
       sessionStorage.setItem('code-fit-token', response.data.token)
       sessionStorage.setItem('code-fit-user-id', response.data.id)
+      sessionStorage.setItem('code-fit-role', response.data.roles[0])
+      console.log(response.data.roles[0])
       this.$router.replace({ name: 'editor' })
     }
   }

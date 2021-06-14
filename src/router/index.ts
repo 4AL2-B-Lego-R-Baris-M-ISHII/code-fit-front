@@ -3,6 +3,7 @@ import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
 import Editor from '@/views/Editor.vue'
 import Main from '@/views/Main.vue'
+import Admin from '@/views/Admin.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/editor',
     name: 'editor',
     component: Editor
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin
   }
 ]
 
