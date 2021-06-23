@@ -3,14 +3,14 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <router-link class="navbar-brand" to="/main">Accueil</router-link>
         <router-link v-if="authenticated" class="navbar-brand" to="/editor">Editeur</router-link>
+        <router-link class="navbar-brand" v-if="isAdmin" to="/admin">Administration</router-link>
         <a class="navbar-brand" v-if="authenticated" @click="logout()">Se déconnecter</a>
         <router-link class="navbar-brand" v-if="!authenticated" to="/login">Se connecter</router-link>
-        <router-link class="navbar-brand" v-if="isAdmin" to="/admin">Administration</router-link>
       </nav>
     </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: 'Nav',
   data () {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     logout () {
-      sessionStorage.removeItem('code-fit-token')
+      sessionStorage.clear()
       this.$router.replace({ name: 'login' })
     }
   },

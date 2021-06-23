@@ -4,6 +4,7 @@ import Signup from '@/views/Signup.vue'
 import Editor from '@/views/Editor.vue'
 import Main from '@/views/Main.vue'
 import Admin from '@/views/Admin.vue'
+import List from '@/views/ExercisesList.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -36,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/admin',
     name: 'admin',
     component: Admin
+  },
+  {
+    path: '/list',
+    name: 'list',
+    component: List
   }
 ]
 

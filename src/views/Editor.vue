@@ -16,9 +16,7 @@
       <section class="result_section">
         <div>{{output}}</div>
       </section>
-
     </div>
-    <!-- <button type='button' @click='logout()'>Se déconnecter</button> -->
 </template>
 
 <script>
@@ -39,7 +37,7 @@ export default {
     Nav
   },
   mounted () {
-    if (sessionStorage.getItem('code-fit-token') === '') {
+    if (sessionStorage.getItem('code-fit-token') === null) {
       this.$router.replace({ name: 'login' })
     }
     this.editor = new Editor({
