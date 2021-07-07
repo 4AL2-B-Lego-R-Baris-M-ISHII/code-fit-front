@@ -4,7 +4,8 @@ import Signup from '@/views/Signup.vue'
 import Editor from '@/views/Editor.vue'
 import Main from '@/views/Main.vue'
 import Admin from '@/views/Admin.vue'
-import List from '@/views/ExercisesList.vue'
+import List from '@/components/ExercisesList.vue'
+import CreateExercise from '@/views/ExercisesCreate.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -36,12 +37,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/admin',
     name: 'admin',
-    component: Admin
-  },
-  {
-    path: '/list',
-    name: 'list',
-    component: List
+    component: Admin,
+    children: [
+      {
+        path: 'list',
+        component: List
+      },
+      {
+        path: 'create',
+        component: CreateExercise
+      }
+    ]
   }
 ]
 

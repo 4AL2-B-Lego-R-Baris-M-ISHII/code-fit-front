@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       authenticated: '',
-      isAdmin: ''
+      isAdmin: false
     }
   },
   methods: {
@@ -31,8 +31,8 @@ export default {
       this.authenticated = auth
     }
     const role = sessionStorage.getItem('code-fit-role')
-    if (role !== null && role === 'ROLE_USER') {
-      this.isAdmin = role
+    if (role !== null && role === 'ROLE_ADMIN') {
+      this.isAdmin = true
     }
   }
 }

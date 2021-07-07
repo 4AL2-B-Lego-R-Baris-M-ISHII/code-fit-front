@@ -1,9 +1,16 @@
 <template>
     <div id="list">
         <h1>Liste</h1>
-        <ul>
-          <li v-for="exercise in exercises" :key="exercise.id">{{ exercise.title }}</li>
-        </ul>
+        <table>
+          <th>Titre</th>
+          <th>Description</th>
+          <th>Actions</th>
+          <tr v-for="exercise in exercises" :key="exercise.id">
+            <td>{{ exercise.title }}</td>
+            <td>{{ exercise.description }}</td>
+            <td>todo crud</td>
+          </tr>
+        </table>
     </div>
 </template>
 
