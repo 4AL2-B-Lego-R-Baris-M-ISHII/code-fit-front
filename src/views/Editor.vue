@@ -1,4 +1,5 @@
 <template>
+    <Nav />
     <div class="editor">
         <h1>Editeur</h1>
         <p>
@@ -15,15 +16,14 @@
       <section class="result_section">
         <div>{{output}}</div>
       </section>
-
     </div>
-    <button type='button' @click='logout()'>Se déconnecter</button>
 </template>
 
 <script>
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import axios from 'axios'
+import Nav from '@/components/Nav'
 
 export default {
   name: 'Editor',
@@ -33,7 +33,13 @@ export default {
       output: ''
     }
   },
+  components: {
+    Nav
+  },
   mounted () {
+    if (sessionStorage.getItem('code-fit-token') === null) {
+      this.$router.replace({ name: 'login' })
+    }
     this.editor = new Editor({
       element: document.querySelector('.element'),
       extensions: [
@@ -46,9 +52,6 @@ export default {
     this.editor.destroy()
   },
   methods: {
-    logout () {
-      this.$router.replace({ name: 'login' })
-    },
     async compileCode () {
       const content = this.editor.getJSON().content
         .map(element => element.content[0])

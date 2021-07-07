@@ -1,4 +1,5 @@
 <template>
+  <Nav />
   <div id='login'>
     <h1>Connexion</h1>
     <label for="username">Nom d'utilisateur</label>
@@ -23,51 +24,32 @@
     <br><br>
     <button type='button' @click='login()'>Se connecter</button>
     <br>
-    <button type='button' @click='signup()'>S'inscrire</button>
-  </div>
-  <div v-if='token'>
-      <p>{{ token }}</p>
+    <router-link to="/signup">S'inscrire</router-link>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Nav from '@/components/Nav'
 export default {
   name: 'Login',
   data () {
     return {
       username: '',
-      password: '',
-      token: null,
-      authenticated: false
+      password: ''
     }
   },
-  mounted () {
-    if (!this.authenticated) {
-      this.$router.replace({ name: 'login' })
-    }
+  components: {
+    Nav
   },
   methods: {
     async login () {
-      console.log(this.username)
-      console.log(this.password)
       const user = { username: this.username, password: this.password }
-      // console.log(user)
       const response = await axios.post('http://localhost:8080/api/auth/signin', user)
-      // console.log(response)
-      this.token = response.data.token
-      // console.log(this.token)
-      this.authenticated = true
-      // console.log(this.authenticated)
       sessionStorage.setItem('code-fit-token', response.data.token)
       sessionStorage.setItem('code-fit-user-id', response.data.id)
-      await this.$router.replace({ name: 'editor' })
-    },
-    signup () {
-      this.$router.replace({ name: 'signup' })
-    },
-    setAuthenticated (status) {
-      this.authenticated = status
+      sessionStorage.setItem('code-fit-role', response.data.roles[0])
+      this.$router.replace({ name: 'editor' })
     }
   }
 }

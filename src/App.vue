@@ -1,9 +1,6 @@
 <template>
-  <div id='app'>
-      <div id='nav'>
-          <router-link v-if='authenticated' to='/login' v-on:click='logout()' replace>Logout</router-link>
-      </div>
-      <router-view @authenticated='setAuthenticated' />
+  <div id='App'>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -20,18 +17,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
